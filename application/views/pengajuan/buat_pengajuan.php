@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1"><?php echo $this->session->flashdata('alert'); ?></div>	
-	<div class="col-md-9 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1">
 <?php  
 echo form_open(site_url('pengajuan/insert'), array('class'=>'form-horiontal', 'id' => 'form_buat_pengajuan'));
 ?>
@@ -77,7 +77,7 @@ echo form_open(site_url('pengajuan/insert'), array('class'=>'form-horiontal', 'i
 	    </div>
 	  </div>
 	  <div class="form-group col-md-12">
-	    <label for="deskripsi[]" class="col-sm-3 control-label">Latar Belakang </label>
+	    <label for="deskripsi[]" class="col-sm-3 control-label">Deskripsi </label>
 	    <div class="col-sm-9">
 	      <textarea name="deskripsi[0]" id="deskripsi[0].deskripsi" class="form-control" rows="6"></textarea>
 	    </div>
@@ -143,7 +143,7 @@ echo form_open(site_url('pengajuan/insert'), array('class'=>'form-horiontal', 'i
 		    </div>
 		  </div>
 		  <div class="form-group col-md-12">
-		    <label for="deskripsi" class="col-sm-3 control-label">Latar Belakang </label>
+		    <label for="deskripsi" class="col-sm-3 control-label">Deskripsi </label>
 		    <div class="col-sm-9">
 		      <textarea name="deskripsi-hide" id="deskripsi" class="form-control" rows="6"></textarea>
 		    </div>

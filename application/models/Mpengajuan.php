@@ -291,7 +291,8 @@ class Mpengajuan extends CI_Model
 				{
 					$notif = array(
 						'notif_content' => "Menolak pengajuan barang anda.",
-						'notif_date' => date('Y-m-d'),
+						'notif_date' => date('Y-m-d H:i:s'),
+						'receive_user_id' =>  $get->ID_user,
 						'sender_user_id' => $this->session->has_userdata('ID_user'),
 						'read' => 'false'
 					);
@@ -299,7 +300,7 @@ class Mpengajuan extends CI_Model
 				} else {
 					$notif = array(
 						'notif_content' => "Menolak pengajuan barang anda.",
-						'notif_date' => date('Y-m-d'),
+						'notif_date' => date('Y-m-d H:i:s'),
 						'receive_user_id' =>  $get->ID_user,
 						'sender_user_id' => $this->session->has_userdata('ID_user'),
 						'ID_pengajuan' => $get->ID_pengajuan,
@@ -313,7 +314,8 @@ class Mpengajuan extends CI_Model
 				{
 					$notif = array(
 						'notif_content' =>"Menerima pengajuan anda.",
-						'notif_date' => date('Y-m-d'),
+						'notif_date' => date('Y-m-d H:i:s'),
+						'receive_user_id' =>  $get->ID_user,
 						'sender_user_id' => $this->session->has_userdata('ID_user'),
 						'read' => 'false'
 					);
@@ -321,7 +323,7 @@ class Mpengajuan extends CI_Model
 				} else {
 					$notif = array(
 						'notif_content' =>"Menerima pengajuan anda.",
-						'notif_date' => date('Y-m-d'),
+						'notif_date' => date('Y-m-d H:i:s'),
 						'receive_user_id' =>  $get->ID_user,
 						'sender_user_id' => $this->session->has_userdata('ID_user'),
 						'ID_pengajuan' => $get->ID_pengajuan,
@@ -359,8 +361,9 @@ class Mpengajuan extends CI_Model
 	 **/
 	public function delete_barang($param = 0)
 	{
-		$this->db->delete('tb_inventori_item', 'tb_budget');
-		$this->db->where('ID_inventori', $param);
+		$this->db->delete('tb_budget', array('ID_inventori' => $param));
+		$this->db->delete('tb_inventori_item', array('ID_inventori' => $param));
+		
 		if($this->db->affected_rows())
 		{
 			$this->template->alert(

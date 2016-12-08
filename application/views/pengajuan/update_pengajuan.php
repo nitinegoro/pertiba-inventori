@@ -23,7 +23,7 @@ foreach($this->pengajuan->get_items($get->ID_pengajuan) as $item) :
 	echo form_hidden("item_id[{$no}]", $item->ID_inventori);
 ?>
 	  	  <div class="form-group">
-	  	  	<button type="button" class="btn btn-white btn-danger btn-bold btn-round pull-right btn-sm open-modal-delete-item" data-id="<?php echo $item->ID_inventori; ?>" style="margin-left: 20px;"><i class="fa fa-trash-o"></i> Hapus Barang ini</button>
+	  	  	<button type="button" class="btn btn-white btn-danger btn-bold btn-round pull-right btn-sm open-modal-delete-item" data-id="<?php echo $item->ID_inventori; ?>" data-ajuan="<?php echo $item->ID_pengajuan; ?>" style="margin-left: 20px;"><i class="fa fa-trash-o"></i> Hapus Barang ini</button>
 	  	  </div>
 
 	  	  <div class="form-group col-md-12"><hr></div>
@@ -102,7 +102,6 @@ endforeach;
 	  	  <div class="form-group col-md-12"><hr></div>
 	  	  <div class="form-group">
 	  	  	<button type="button" class="btn btn-white btn-danger btn-bold btn-round pull-right btn-sm removeButton" style="margin-left: 20px;"><i class="fa fa-times"></i> Hapus Form ini</button>
-<!-- 	  	  	<button type="button" class="btn btn-white btn-default btn-bold btn-round pull-right btn-sm addButton" data-template="barang"><i class="fa fa-plus"></i> Tambahkan Form Barang</button> -->
 	  	  </div>
 	  	  <div class="form-group col-md-12"><hr></div>
 		  <div class="form-group col-md-12">
@@ -160,7 +159,7 @@ endforeach;
 		    </div>
 		  </div>
 		  <div class="form-group col-md-12">
-		    <label for="deskripsi" class="col-sm-3 control-label">Latar Belakang </label>
+		    <label for="deskripsi" class="col-sm-3 control-label">Deskripsi </label>
 		    <div class="col-sm-9">
 		      <textarea name="deskripsi-hide" id="deskripsi" class="form-control" rows="6"></textarea>
 		    </div>

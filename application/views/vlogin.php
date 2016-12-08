@@ -6,9 +6,10 @@
 		<title>Login - Sistem Inventaris</title>
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-		<!-- bootstrap & fontawesome -->
+		<!-- bootstrap & fontawesome & animate -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo base_url('assets/font-awesome/4.2.0/css/font-awesome.min.css'); ?>" />
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css') ?>" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/fonts/fonts.googleapis.com.css'); ?>" />
 		<!-- ace styles -->
@@ -44,9 +45,8 @@
 							</div>
 
 							<div class="space-6"></div>
-
 							<div class="position-relative">
-								<div id="login-box" class="login-box visible widget-box no-border">
+								<div id="login-box" class="login-box visible widget-box no-border animated <?php echo ($this->session->flashdata('alert')) ? 'shake' : ''; ?>">
 									<div class="widget-body">
 										<div class="widget-main">
 											<?php echo $this->session->flashdata('alert'); ?>

@@ -1,5 +1,5 @@
 	<body class="no-skin">
-		<div id="navbar" class="navbar navbar-default    navbar-collapse       h-navbar ace-save-state">
+		<div id="navbar" class="navbar navbar-default navbar-collapse h-navbar ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
 					<a href="" class="navbar-brand">
@@ -10,8 +10,6 @@
 
 					<button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons,.navbar-menu">
 						<span class="sr-only">Toggle user menu</span>
-
-						<img src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 					</button>
 
 					<button class="pull-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#sidebar">
@@ -29,7 +27,7 @@
 					<ul class="nav ace-nav">
 						<li class="transparent dropdown-modal">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
+								<i class="ace-icon fa fa-bell icon-animated-bell"></i> <span class="badge badge-danger"><?php echo count($this->app->notifications()) ?></span>
 							</a>
 
 							<div class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
@@ -38,11 +36,14 @@
 										<li>
 											<a data-toggle="active tab" href="#navbar-messages">
 												Pengajuan anda
-												<span class="badge badge-danger">5</span>
+												<span class="badge badge-danger"><?php echo count($this->app->notifications()) ?></span>
 											</a>
 										</li>
 									</ul><!-- .nav-tabs -->
-
+	<?php  
+	// jika tidak sama dengan kosong
+	if(count($this->app->notifications()) != FALSE) :
+	?>
 									<div class="tab-content">
 										<div id="navbar-messages" class="tab-pane active">
 											<ul class="dropdown-menu-right dropdown-navbar dropdown-menu">
@@ -50,32 +51,28 @@
 													<ul class="dropdown-menu dropdown-navbar">
 						<?php  
 						/* Start Loop */
-						for($i=1; $i<=5; $i++) :
+						foreach($this->app->notifications() as $row) :
 						?>
 														<li>
 															<a href="#">
-																<img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-																<span class="msg-body">
 																	<span class="msg-title">
-																		<span class="blue">Alex:</span>
-																		Ciao sociis natoque penatibus et auctor ...
-																	</span>
-
+																		<span class="blue"><?php echo $row->full_name; ?>:</span>
+																		<?php echo $row->notif_content; ?>
+																	</span><br>
 																	<span class="msg-time">
 																		<i class="ace-icon fa fa-clock-o"></i>
-																		<span>a moment ago</span>
+																		<span data-livestamp="<?php echo $row->notif_date; ?>"></span>
 																	</span>
-																</span>
 															</a>
 														</li>
 						<?php  
 						/* End Loop */
-						endfor;
+						endforeach;
 						?>
 													</ul>
 												</li>
 												<li class="dropdown-footer">
-													<a href="inbox.html">
+													<a href="#"  data-toggle="modal" data-target='#modal-id'>
 														Lihat Selengkapnya..
 														<i class="ace-icon fa fa-arrow-right"></i>
 													</a>
@@ -83,6 +80,9 @@
 											</ul>
 										</div><!-- /.tab-pane -->
 									</div><!-- /.tab-content -->
+	<?php  
+	endif;
+	?>
 								</div><!-- /.tabbable -->
 							</div><!-- /.dropdown-menu -->
 						</li>
@@ -99,7 +99,7 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
+									<a href="<?php echo site_url('user/account') ?>">
 										<i class="ace-icon fa fa-cog"></i>
 										Pengaturan
 									</a>

@@ -135,7 +135,7 @@ foreach($inventaris as $row) :
 		// cek sudak diterima apa belum (kalo admin tetap bisa edit)
 		if($this->session->userdata('user')->ID_user == $row->ID_user AND $row->status == 'pending' OR $this->session->userdata('user')->access == 'admin') :
 		?>
-										<a href="<?php echo site_url("pengajuan/get/{$row->ID_pengajuan}") ?>" class="btn btn-minier btn-white btn-round btn-primary" data-rel="popover" data-trigger="hover" data-placement="top" data-content="Sunting" style="margin-left: 6px;">
+										<a href="<?php echo site_url("inventori/get/{$row->ID_inventori}") ?>" class="btn btn-minier btn-white btn-round btn-primary" data-rel="popover" data-trigger="hover" data-placement="top" data-content="Sunting" style="margin-left: 6px;">
 											<i class="ace-icon fa fa-pencil"></i> <small> Sunting</small>
 										</a>
 		<?php  
@@ -143,7 +143,7 @@ foreach($inventaris as $row) :
 		// untuk fitur administrator
 		if($this->session->userdata('user')->access == 'admin') :
 		?>
-										<a class="btn btn-minier btn-white btn-round btn-danger open-modal-delete" data-rel="popover" data-trigger="hover" data-placement="top" data-content="Hapus" style="margin-left: 6px;" data-id="<?php echo $row->ID_pengajuan; ?>">
+										<a class="btn btn-minier btn-white btn-round btn-danger modal-delete-item" data-rel="popover" data-trigger="hover" data-placement="top" data-content="Hapus" style="margin-left: 6px;" data-id="<?php echo $row->ID_pengajuan; ?>">
 											<i class="ace-icon fa fa-trash-o"></i> <small> Hapus</small>
 										</a>
 		<?php 
@@ -157,8 +157,11 @@ foreach($inventaris as $row) :
 									<div class="profile-user-info profile-user-info-striped">
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Deskripsi : </div>
-
 											<div class="profile-info-value"> <span><?php echo $row->description; ?></span> </div>
+										</div>
+										<div class="profile-info-row">
+											<div class="profile-info-name"> Kondisi Barang : </div>
+											<div class="profile-info-value"> <span><?php echo $row->c_name; ?></span> </div>
 										</div>
 									</div>
 								</div>
@@ -206,12 +209,12 @@ endforeach;
 <div class="modal" id="modal-pengajuan-delete-all">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
-			<div class="modal-header bg-warning">
+			<div class="modal-header bg-delete">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h5 class="modal-title text-white"><i class="fa fa-question-circle"></i> Hapus yang terpilih ?</h5>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-info bigger-110">
+				<div class="alert alert-danger bigger-110">
 					Ini mungkin akan menyebabkan data barang yang telah diajukan akan ikut terhapus.
 				</div>
 				<p class="bigger-110 bolder center grey">
@@ -235,66 +238,17 @@ echo form_close();
 </div>
 
 
-<!-- Terima Pengajuan -->
-<div class="modal" id="modal-pengajuan-terima-one">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header bg-success">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h5 class="modal-title text-white"><i class="fa fa-question-circle"></i> Ubah Status ?</h5>
-			</div>
-			<div class="modal-body">
-				<div class="alert alert-info bigger-110">
-					Ubah pengajuan ini menjadi status diterima.
-				</div>
-				<p class="bigger-110 bolder center grey">
-					<i class="ace-icon fa fa-hand-o-right blue bigger-120"></i> Yakin akan mengubahnya?
-				</p>
-			</div>
-			<div class="modal-footer text-center">
-				<a class="btn btn-sm pull-right btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Batal</a>
-				<a id="button-yes" class="btn btn-sm pull-left btn-success"><i class="fa fa-check"></i> Terima</a>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- Tunda / Tolak Pengajuan -->
-<div class="modal" id="modal-pengajuan-tunda-one">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header bg-warning">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h5 class="modal-title text-white"><i class="fa fa-question-circle"></i> Ubah Status ?</h5>
-			</div>
-			<div class="modal-body">
-				<div class="alert alert-info bigger-110">
-					Ubah pengajuan ini menjadi status ditolak / tertunda.
-				</div>
-				<p class="bigger-110 bolder center grey">
-					<i class="ace-icon fa fa-hand-o-right blue bigger-120"></i> Yakin akan mengubahnya?
-				</p>
-			</div>
-			<div class="modal-footer text-center">
-				<a class="btn btn-sm pull-right btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Batal</a>
-				<a id="button-yes" class="btn btn-sm pull-left btn-warning"><i class="fa fa-times"></i> Tolak</a>
-			</div>
-		</div>
-	</div>
-</div>
-
 
 <!-- Hapus Pengajuan -->
-<div class="modal" id="modal-pengajuan-delete-one">
+<div class="modal" id="modal-item-delete-one">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
-			<div class="modal-header bg-danger">
+			<div class="modal-header bg-delete">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h5 class="modal-title text-white"><i class="fa fa-question-circle"></i> Hapus data ini ?</h5>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-info bigger-110">
+				<div class="alert alert-danger bigger-110">
 					Ini mungkin akan menyebabkan data barang yang telah diajukan akan ikut terhapus.
 				</div>
 				<p class="bigger-110 bolder center grey">
@@ -303,7 +257,7 @@ echo form_close();
 			</div>
 			<div class="modal-footer text-center">
 				<a class="btn btn-sm pull-right btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Batal</a>
-				<a id="button-yes" class="btn btn-sm pull-left btn-danger"><i class="fa fa-trash-o"></i> Hapus</a>
+				<a id="button-delete" class="btn btn-sm pull-left btn-danger"><i class="fa fa-trash-o"></i> Hapus</a>
 			</div>
 		</div>
 	</div>

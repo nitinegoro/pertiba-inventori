@@ -19,9 +19,24 @@
 
 		<!-- basic scripts -->
 
+		<div class="modal animated fadeIn" id="modal-id">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h5 class="modal-title">Modal title</h5>
+					</div>
+					<div class="modal-body">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!--[if !IE]> -->
 		<script src="<?php echo base_url('assets/js/jquery-2.1.4.min.js'); ?>"></script>
-
 		<!-- <![endif]-->
 
 		<!--[if IE]>
@@ -46,6 +61,8 @@
 		<script src="<?php echo base_url('assets/js/bootstrap-datetimepicker.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/bootstrap-datepicker.min.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/js/bootstrap-timepicker.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/livestamp.min.js'); ?>"></script>
+		<script data-pace-options='{ "elements": { "selectors": ["body"] }, "startOnPageLoad": false }' src="<?php echo base_url('assets/js/pace.min.js'); ?>"></script>
     	<script type="text/javascript" src="<?php echo base_url('assets/pass-strength/src/i18n.js'); ?>"></script>
     	<script type="text/javascript" src="<?php echo base_url('assets/pass-strength/dist/pwstrength-bootstrap.min.js'); ?>"></script>
     	<script type="text/javascript" src="<?php echo base_url('assets/pass-strength/pwstrength.js'); ?>"></script>

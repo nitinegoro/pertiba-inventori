@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title><?php echo (isset($title)) ? $title : "Unknow Title"; ?> - Sistem Inventaris</title>
-		<meta name="description" content="top menu &amp; navigation" />
+		<meta name="description" content="Sistem Informasi Inventaris STIE Pertiba Pangkkalpinang" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
@@ -26,6 +26,8 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-timepicker.min.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/daterangepicker.min.css'); ?>" />
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-datetimepicker.min.css'); ?>" />
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/pace.css'); ?>" />
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<style>
 			ul .submenu .active { font-weight: bold; }
 			.mini-font { font-size: 12px; }
@@ -35,7 +37,10 @@
 			.bg-delete { background-color: #D15B47; color: white; }
 			.bg-terima { background-color: #87B87F; color: white; }
 			.bg-pending { background-color:#FFB752; color: white; }
+			.bg-update { background-color: #428BCA; color: white; }
+			.bg-primary { background-color: #438EB9; color: white; }
 			.progress { margin-top: 10px; }
+			a  { cursor: pointer; }
 		</style>
 <?php 
 /**

@@ -29,7 +29,7 @@ class Pengajuan extends Inventaris
 
 		// set pagination
 		$config = $this->template->pagination_list();
-		$config['base_url'] = site_url("pengajuan?q={$filter['q']}&status={$filter['status']}&from={$filter['from']}&end={$filter['end']}&page={$filter['page']}");
+		$config['base_url'] = site_url("pengajuan?q={$filter['q']}&status={$filter['status']}&from={$filter['from']}&end={$filter['end']}");
 		$config['per_page'] = 20;
 		$config['total_rows'] = $this->pengajuan->get_all(null, null, 'num');
 		$config['uri_segment'] = 3;
@@ -120,10 +120,10 @@ class Pengajuan extends Inventaris
 	 * @return Integer (ID_inventori)
 	 * @return void
 	 **/
-	public function delete_barang($param = 0)
+	public function delete_barang($param = 0, $ajuan = 0)
 	{
-		$this->pengajuan->delete_barang();
-		redirect("pengajuan/get/{$param}");
+		$this->pengajuan->delete_barang($param);
+		redirect("pengajuan/get/{$ajuan}");
 	}
 
 	/**

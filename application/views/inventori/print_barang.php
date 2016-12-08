@@ -59,6 +59,7 @@
       <thead>
         <tr class="mini-font">
           <th width="10">No.</th>
+          <th>No. Inventaris</th>
           <th>Nama Barang</th>
           <th>jenis Barang</th>
           <th>SKU</th>
@@ -79,6 +80,7 @@ $no = 1;
    ?>
         <tr class="sub-table">
             <td><?php echo $no++; ?></td>
+            <td><?php echo $item->NO_inventori; ?></td>
             <td><?php echo $item->inventori_name; ?></td>
             <td><?php echo $item->category_name; ?></td>
             <td><?php echo $item->serial_number; ?></td>
@@ -97,7 +99,7 @@ $no = 1;
       </tbody>
       <thead>
          <tr>
-            <td colspan="7" style="text-align: right;">Total (Rp.) : </td>
+            <td colspan="8" style="text-align: right;">Total (Rp.) : </td>
             <td colspan="2"><?php echo (isset($total)) ? number_format($total) : '0'; ?>,00</td>
          </tr>
       </thead>

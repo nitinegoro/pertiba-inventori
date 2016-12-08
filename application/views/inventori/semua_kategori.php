@@ -58,7 +58,7 @@
 						<a href="<?php echo site_url("inventori/category?order=asc&q={$this->input->get('q')}&page={$this->input->get('page')}") ?>" style="color: #707070;">Nama Kategori <i class="fa fa-sort"></i></a>
 				<?php endif; ?>
 					</th>
-					<th>Barang Inventaris</th>
+					<th>Jumlah Barang</th>
 					<th width="100">Tindakan</th>
 				</tr>
 			</thead>
@@ -141,9 +141,9 @@
 <div class="modal" id="modal-delete">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-delete">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h5 class="modal-title"><i class="fa fa-question-circle text-danger"></i> <?php echo lang('dialo_delete'); ?></h5>
+				<h5 class="modal-title"><i class="fa fa-question-circle"></i> Delete</h5>
 			</div>
 			<div class="modal-body">
 				<p class="bigger-110 bolder center grey">

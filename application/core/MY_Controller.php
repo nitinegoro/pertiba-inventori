@@ -22,9 +22,14 @@ class Inventaris extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library(array('template','breadcrumbs','page_title','config', 'slug','table'));
+		$this->load->library(array('template','breadcrumbs','page_title','config','table'));
+
 		$this->load->helper(array('menus','date'));
+
+		$this->load->model('mapp', 'app');
+		
 		date_default_timezone_set('Asia/Jakarta');
+
 		$this->breadcrumbs->unshift(0, 'Dashboard', 'main');
 
 		if($this->session->has_userdata('is_login')==FALSE)

@@ -74,12 +74,13 @@ jQuery(function($) {
     // delete one
     $('.open-modal-delete-item').click( function() {
         var data_id = $(this).data('id');
+        var data_ajuan = $(this).data('ajuan');
         $('#block-item-' + data_id).addClass('shake');
         $('#modal-hapus-item').modal('show');
         $('#btn-cancel').click( function() {
         	$('#block-item-' + data_id).removeClass('shake');
         });
-        $('a#button-yes').attr('href', base_url + '/pengajuan/delete_barang/' + data_id);
+        $('a#button-yes').attr('href', base_url + '/pengajuan/delete_barang/' + data_id + '/' + data_ajuan);
         return false;
     });
 });
@@ -107,8 +108,12 @@ function get_child_category(parent)
     $.ajax({
         url: base_url + 'inventori/get_category_child/' + parent,
         dataType:'json',
+        beforeSend: function() {
+        	Pace.start();
+        },
         success:function(response) 
         {
+        	Pace.stop();
         	if(response['response']) {
         		$('#sub_category').attr('disabled', false);
 	            $('#sub_category').html('<option value="">~ PILIH ~</option>');
@@ -135,8 +140,12 @@ function get_child_category_add(parent, selector, selected = 0)
     $.ajax({
         url: base_url + 'inventori/get_category_child/' + parent,
         dataType:'json',
+        beforeSend: function() {
+        	Pace.start();
+        },
         success:function(response) 
         {
+        	Pace.stop();
         	if(response['response']) {
         		$(selector).attr('disabled', false);
 	            $(selector).html('<option value="">~ PILIH ~</option>');

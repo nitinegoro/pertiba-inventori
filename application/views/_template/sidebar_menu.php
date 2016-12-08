@@ -57,7 +57,7 @@
 					<li class="<?php echo active_link_controller('inventori'); ?> hover">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-database"></i>
-							<span class="menu-text"> Inventaris </span>
+							<span class="menu-text"> Master Data </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -70,28 +70,32 @@
 									<i class="menu-icon fa fa-caret-right"></i>
 									Barang Inventaris
 								</a>
-
 								<b class="arrow"></b>
 							</li>
-
 							<li class="hover <?php echo active_link_method('category'); ?>">
 								<a href="<?php echo site_url('inventori/category') ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Kategori Barang
 								</a>
-
+								<b class="arrow"></b>
+							</li>
+							<li class="hover <?php echo active_link_method('condition'); ?>">
+								<a href="<?php echo site_url('inventori/condition') ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Kondisi Barang
+								</a>
 								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
-					<li class="hover">
-						<a href="">
-							<i class="menu-icon fa fa-bar-chart"></i>
-							<span class="menu-text"> Laporan </span>
-						</a>
+<!-- 					<li class="hover">
+	<a href="">
+		<i class="menu-icon fa fa-bar-chart"></i>
+		<span class="menu-text"> Laporan </span>
+	</a>
 
-						<b class="arrow"></b>
-					</li>
+	<b class="arrow"></b>
+</li> -->
 	<?php  
 	// untuk fitur administrator
 	if($this->session->userdata('user')->access == 'admin') :

@@ -22,7 +22,7 @@ class Muser extends CI_Model {
 	public function get($param = 0)
 	{
 		$query = $this->db->query("
-			SELECT tb_users.full_name, tb_users.ID_user, tb_division.ID_division, tb_division.division_name FROM tb_users
+			SELECT tb_users.*, tb_division.* FROM tb_users
 			LEFT JOIN tb_division ON tb_division.ID_division = tb_users.ID_division WHERE tb_users.ID_user = ?
 		", array($param));
 
@@ -63,6 +63,178 @@ class Muser extends CI_Model {
 		{
 			$this->template->alert(
 				' User ditambahkan.', 
+				array('type' => 'success','icon' => 'check')
+			);
+		} else {
+			$this->template->alert(
+				' Gagal menyimpan data.', 
+				array('type' => 'danger','icon' => 'times')
+			);
+		}
+	}
+
+	/**
+	 * Updating data
+	 *
+	 * @param Integer ID_user
+	 * @return String
+	 **/
+	public function update($param = 0)
+	{
+		$get = $this->get($param);
+
+		$user = array(
+			'full_name' => (!$this->input->post('full_name')) ? $get->full_name : $this->input->post('full_name'),
+			'ID_division' => (!$this->input->post('divisi')) ? $get->ID_division : $this->input->post('divisi'),
+			'access' => (!$this->input->post('access')) ? $get->access : $this->input->post('access')  
+		);
+
+		$this->db->update('tb_users', $user, array('ID_user' => $param));
+
+		if($this->db->affected_rows())
+		{
+			$this->template->alert(
+				' Perubahan disimpan.', 
+				array('type' => 'success','icon' => 'check')
+			);
+		} else {
+			$this->template->alert(
+				' Gagal menyimpan data.', 
+				array('type' => 'danger','icon' => 'times')
+			);
+		}
+	}
+
+	/**
+	 * Deleting data
+	 *
+	 * @param Integer ID_user
+	 * @return String
+	 **/
+	public function delete($param  = 0)
+	{
+		$get = $this->get($param);
+
+		foreach ($this->getPengajuan($param) as $row) 
+		{
+			$data = array(
+				'ID_user' => $this->session->userdata('user')->ID_user
+			);
+			$this->db->update('tb_pengajuan', $data, array('ID_user'=> $param));
+		}
+
+		$this->db->delete('tb_users', array('ID_user' => $param));
+
+		$this->template->alert(
+			' User terhapus.', 
+			array('type' => 'success','icon' => 'check')
+		);
+	}
+
+	/**
+	 * Get Pengajuan user
+	 *
+	 * @param Integer ID_user
+	 * @return Array result()
+	 **/
+	public function getPengajuan($user = 0)
+	{
+		$query = $this->db->query("SELECT * FROM tb_pengajuan WHERE ID_user = ? ", array($user));
+		return $query->result();
+	}
+
+	/**
+	 * Multiple Update user
+	 *
+	 * @return string
+	 **/
+	public function multiple_update()
+	{
+		if(is_array($this->input->post('users')))
+		{
+			foreach ($this->input->post('users') as $key => $value) 
+			{
+				$get = $this->get($value);
+
+				$user = array(
+					'full_name' => (!$this->input->post('full_name')[$key]) ? $get->full_name : $this->input->post('full_name')[$key],
+					'ID_division' => (!$this->input->post('divisi')[$key]) ? $get->ID_division : $this->input->post('divisi')[$key],
+					'access' => (!$this->input->post('access')[$key]) ? $get->access : $this->input->post('access')[$key]  
+				);
+
+				$this->db->update('tb_users', $user, array('ID_user' => $value));
+			}
+			$this->template->alert(
+				' Perubahan disimpan.', 
+				array('type' => 'success','icon' => 'check')
+			);
+		} else {
+			$this->template->alert(
+				' Gagal menyimpan data.', 
+				array('type' => 'danger','icon' => 'times')
+			);
+		}
+	}
+
+	/**
+	 * Multiple Delete user
+	 *
+	 * @return string
+	 **/
+	public function multiple_delete()
+	{
+		if(is_array($this->input->post('users')))
+		{
+			foreach ($this->input->post('users') as $key => $value) 
+			{
+				$get = $this->get($value);
+
+				foreach ($this->getPengajuan($value) as $row) 
+				{
+					$data = array(
+						'ID_user' => $this->session->userdata('user')->ID_user
+					);
+					$this->db->update('tb_pengajuan', $data, array('ID_user'=> $value));
+				}
+
+				$this->db->delete('tb_users', array('ID_user' => $value));
+			}
+			$this->template->alert(
+				' Perubahan disimpan.', 
+				array('type' => 'success','icon' => 'check')
+			);
+		} else {
+			$this->template->alert(
+				' Gagal menyimpan data.', 
+				array('type' => 'danger','icon' => 'times')
+			);
+		}
+	}
+
+	/**
+	 * Update passowrd and username account
+	 *
+	 * @param session id
+	 * @return String
+	 **/
+	public function update_account()
+	{
+		$get = $this->get($this->session->userdata('user')->ID_user);
+
+		$old_pass = password_hash($this->input->post('old_pass'), PASSWORD_DEFAULT);
+		$new_pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+		$user = array(
+			'username' => (!$this->input->post('username')) ? $get->username : $this->input->post('username'),
+			'password' => (!$this->input->post('passowrd')) ? $old_pass : $new_pass,
+		);
+
+		$this->db->update('tb_users', $user, array('ID_user' => $get->ID_user));
+
+		if($this->db->affected_rows())
+		{
+			$this->template->alert(
+				' Perubahan disimpan.', 
 				array('type' => 'success','icon' => 'check')
 			);
 		} else {

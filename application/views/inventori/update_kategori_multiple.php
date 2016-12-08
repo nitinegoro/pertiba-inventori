@@ -3,7 +3,7 @@
 	<div class="col-md-12">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="form-group">
-				<h4>Sunting Kategori Baru</h4><hr>
+				<h4>Sunting Kategori</h4><hr>
 			</div>
 <?php 
 echo form_open(site_url("inventori/bulkcategory"), array('class' => 'form-horiontal')); 
@@ -45,7 +45,7 @@ echo form_open(site_url("inventori/bulkcategory"), array('class' => 'form-horion
 			  <div class="col-md-12">
 				<div class="clearfix form-actions">
 					<div class="col-md-offset-4 col-md-9">
-						<button class="btn btn-info" type="submit">
+						<button class="btn btn-info" type="submit" name="action" value="update">
 							<i class="ace-icon fa fa-check bigger-110"></i>Simpan Perubahan
 						</button>
 						<a href="<?php echo site_url('inventori/category') ?>" class="btn" type="reset" style="margin-left: 100px;">
