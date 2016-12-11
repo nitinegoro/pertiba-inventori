@@ -16,8 +16,6 @@ echo form_open(site_url('pengajuan/insert'), array('class'=>'form-horiontal', 'i
 			</div>
 	    </div>
 	  </div>
-	  <div class="form-group col-md-12"></blockquote>
-	  </div>
 	  	  <div class="form-group">
 	  	  	<button type="button" class="btn btn-white btn-default btn-bold btn-round pull-right btn-sm addButton" data-template="barang"><i class="fa fa-plus"></i> Tambahkan Form Barang</button>
 	  	  </div>

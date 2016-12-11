@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>Login - Sistem Inventaris</title>
-		<meta name="description" content="User login page" />
+		<meta name="description" content="Sistem Informasi Inventaris STIE Pertiba Pangkalpinang." />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<!-- bootstrap & fontawesome & animate -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
@@ -23,6 +23,7 @@
 		<![endif]-->
 		<style>
 			.text-red { color: red; }
+			.pd-top { padding-top: 30px; }
 		</style>
 		<!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.min.js"></script>
@@ -35,18 +36,14 @@
 			<div class="main-content">
 				<div class="row">
 					<div class="col-sm-10 col-sm-offset-1">
-						<div class="login-container">
+						<div class="login-container pd-top">
 							<div class="center">
-								<h1>
-									<span class="red">Sistem</span>
-									<span class="white" id="id-text2">Inventaris</span>
-								</h1>
-								<h4 class="blue" id="id-company-text">STIE Pertiba Pangkalpinang</h4>
+								<img src="<?php echo base_url("assets/images/logo_login.png"); ?>" alt="">
 							</div>
 
 							<div class="space-6"></div>
 							<div class="position-relative">
-								<div id="login-box" class="login-box visible widget-box no-border animated <?php echo ($this->session->flashdata('alert')) ? 'shake' : ''; ?>">
+								<div id="login-box" class="login-box visible widget-box no-border  animated <?php echo ($this->session->flashdata('alert')) ? 'shake' : ''; ?>">
 									<div class="widget-body">
 										<div class="widget-main">
 											<?php echo $this->session->flashdata('alert'); ?>
@@ -71,14 +68,14 @@
 													</label>
  														<label class="inline">
 															<input type="checkbox" class="ace" onclick="showPassword()" />
-															<span class="lbl"> Show password</span>
+															<span class="lbl"> Tampilkan Password</span>
 														</label>
 													<div class="space"></div>
 
 													<div class="clearfix">
 														<button type="submit" class="btn-block pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">Login</span>
+															<span class="bigger-110">Masuk</span>
 														</button>
 													</div>
 
@@ -90,21 +87,6 @@
 									</div><!-- /.widget-body -->
 								</div><!-- /.login-box -->
 							</div><!-- /.position-relative -->
-
-							<div class="navbar-fixed-top align-right">
-								<br />
-								&nbsp;
-								<a id="btn-login-dark" href="#">Dark</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-blur" href="#">Blur</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-light" href="#">Light</a>
-								&nbsp; &nbsp; &nbsp;
-							</div>
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
@@ -115,6 +97,7 @@
 
 		<!--[if !IE]> -->
 		<script src="<?php echo base_url('assets/js/jquery.2.1.1.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 		<!-- <![endif]-->
 
 		<!--[if IE]>
@@ -149,32 +132,6 @@
 			    }
 			}
 			
-			//you don't need this, just used for changing background
-			jQuery(function($) {
-			 $('input[name="username"]').focus();
-			 $('#btn-login-dark').on('click', function(e) {
-				$('body').attr('class', 'login-layout');
-				$('#id-text2').attr('class', 'white');
-				$('#id-company-text').attr('class', 'blue');
-				
-				e.preventDefault();
-			 });
-			 $('#btn-login-light').on('click', function(e) {
-				$('body').attr('class', 'login-layout light-login');
-				$('#id-text2').attr('class', 'grey');
-				$('#id-company-text').attr('class', 'blue');
-				
-				e.preventDefault();
-			 });
-			 $('#btn-login-blur').on('click', function(e) {
-				$('body').attr('class', 'login-layout blur-login');
-				$('#id-text2').attr('class', 'white');
-				$('#id-company-text').attr('class', 'light-blue');
-				
-				e.preventDefault();
-			 });
-
-			});
 		</script>
 	</body>
 </html>
